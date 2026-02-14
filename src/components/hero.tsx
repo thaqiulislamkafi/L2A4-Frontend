@@ -46,6 +46,7 @@ const Hero = ({
   },
   className,
 }: HeroProps) => {
+  
   return (
     <section className={cn("py-32", className)}>
       <div className="container max-w-6xl mx-auto">

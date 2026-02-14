@@ -1,4 +1,5 @@
-import { Product, ProductCard } from '@/components/product-card1';
+import {  ProductCard } from '@/components/product-card1';
+import { Product } from '@/types/product.type';
 
 interface ProductResponse {
     data : Product[]
