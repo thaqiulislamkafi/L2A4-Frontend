@@ -26,6 +26,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import Link from "next/link";
 
 interface MenuItem {
   title: string;
@@ -59,7 +60,7 @@ interface NavbarProps {
 
 const Navbar = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
+    url: "/",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
     title: "FoodHub",
@@ -68,7 +69,7 @@ const Navbar = ({
     { title: "Home", url: "/" },
     {
       title: "All Foods",
-      url: "allfoods",    
+      url: "allfoods",
     },
     {
       title: "About",
@@ -87,10 +88,10 @@ const Navbar = ({
 }: NavbarProps) => {
   return (
     <section className={cn("py-4", className)}>
-      <div className="container max-w-7xl mx-auto">
+      <div className="container max-w-6xl mx-auto">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img
@@ -102,14 +103,16 @@ const Navbar = ({
                 {logo.title}
               </span>
             </a>
-            <div className="flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
           </div>
+
+          <div className="flex items-center">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {menu.map((item) => renderMenuItem(item))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+          
           <div className="flex gap-2">
             <Button asChild variant="outline" size="sm">
               <a href={auth.login.url}>{auth.login.title}</a>
@@ -160,7 +163,7 @@ const Navbar = ({
 
                   <div className="flex flex-col gap-3">
                     <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
+                      <Link href={auth.login.url}>{auth.login.title}</Link>
                     </Button>
                     <Button asChild>
                       <a href={auth.signup.url}>{auth.signup.title}</a>
@@ -177,15 +180,15 @@ const Navbar = ({
 };
 
 const renderMenuItem = (item: MenuItem) => {
- 
+
 
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
-        href={item.url}
+        asChild
         className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
       >
-        {item.title}
+        <Link href={item.url}>{item.title}</Link>
       </NavigationMenuLink>
     </NavigationMenuItem>
   );

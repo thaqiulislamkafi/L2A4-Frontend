@@ -29,10 +29,10 @@ interface FooterProps {
 
 const Footer = ({
   logo = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg",
+    src: "rbr",
     alt: "blocks for shadcn/ui",
-    title: "Shadcnblocks.com",
-    url: "https://www.shadcnblocks.com",
+    title: "FoodHub",
+    url: "",
   },
   className,
   tagline = "Components made easy.",
@@ -76,7 +76,7 @@ const Footer = ({
       ],
     },
   ],
-  copyright = "© 2024 Shadcnblocks.com. All rights reserved.",
+  copyright = "© 2026 foodhub.com. All rights reserved.",
   bottomLinks = [
     { text: "Terms and Conditions", url: "#" },
     { text: "Privacy Policy", url: "#" },
@@ -84,7 +84,7 @@ const Footer = ({
 }: FooterProps) => {
   return (
     <section className={cn("py-32", className)}>
-      <div className="container max-w-7xl mx-auto">
+      <div className="container max-w-6xl mx-auto">
         <footer>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
             <div className="col-span-2 mb-8 lg:mb-0">
@@ -94,7 +94,7 @@ const Footer = ({
                     src={logo.src}
                     alt={logo.alt}
                     title={logo.title}
-                    className="h-10 dark:invert"
+                    className="h-10 dark:invert text-red-600"
                   />
                   <LogoText className="text-xl">{logo.title}</LogoText>
                 </Logo>
