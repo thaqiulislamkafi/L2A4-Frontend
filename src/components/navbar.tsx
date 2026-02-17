@@ -1,6 +1,6 @@
 "use client";
 
-import {  Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -22,6 +22,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 interface MenuItem {
   title: string;
@@ -76,11 +78,24 @@ const Navbar = ({
     },
   ],
   auth = {
-    login: { title: "Login", url: "#" },
+    login: { title: "Login", url: "/login" },
     signup: { title: "Sign up", url: "#" },
   },
   className,
 }: NavbarProps) => {
+
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
+
+    const handleSignOut = async () => {
+
+    await authClient.signOut();
+    router.push('/login');
+    router.refresh();
+
+    if (isPending) return null;
+  }
+
   return (
     <section className={cn("py-4", className)}>
       <div className="container max-w-6xl mx-auto">
@@ -107,14 +122,30 @@ const Navbar = ({
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          
+
           <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
-            </Button>
-            <Button asChild size="sm">
-              <a href={auth.signup.url}>{auth.signup.title}</a>
-            </Button>
+
+            {
+              !session ? (
+                <>
+                  <Button asChild variant="outline" size="sm">
+                    <a href={auth.login.url}>{auth.login.title}</a>
+                  </Button>
+
+                  <Button asChild size="sm">
+                    <a href={auth.signup.url}>{auth.signup.title}</a>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button  variant="outline" size="sm" onClick={handleSignOut}>
+                    Sign Out
+                  </Button>
+                </>
+              )
+            }
+
+
           </div>
         </nav>
 
