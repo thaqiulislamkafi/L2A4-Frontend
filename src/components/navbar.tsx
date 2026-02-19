@@ -1,7 +1,5 @@
 "use client";
-
 import { Menu } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 
 import {
@@ -79,7 +77,7 @@ const Navbar = ({
   ],
   auth = {
     login: { title: "Login", url: "/login" },
-    signup: { title: "Sign up", url: "#" },
+    signup: { title: "Sign up", url: "/signup" },
   },
   className,
 }: NavbarProps) => {
@@ -87,6 +85,8 @@ const Navbar = ({
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
 
+    console.log(session?.user) ;
+    
     const handleSignOut = async () => {
 
     await authClient.signOut();
