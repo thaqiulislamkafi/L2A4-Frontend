@@ -18,6 +18,7 @@ import {
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
 import { User } from "@/types/user.type"
+import { Spinner } from "./ui/spinner"
 
 // This is sample data.
 
@@ -26,7 +27,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const {data : session , isPending} = authClient.useSession() ;
 
-  const user :User = session?.user
+  const user : User = session?.user
+  
   const versions = ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"]
 
   const providerRoute = [
@@ -61,7 +63,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   ]
 
   
-  if(isPending) return null
+  if(isPending) return <Spinner/>
 
   return (
     <Sidebar {...props}>

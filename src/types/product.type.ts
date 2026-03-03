@@ -11,7 +11,7 @@ export interface Product {
   description: string;
   cuisine_rel: Cuisine;
   dietry_rel: Dietry;
-  category: Category;
+  category_rel: Category;
   availabilty_status: string;
   price: number;
   provider: User;

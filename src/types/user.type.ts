@@ -3,9 +3,10 @@ export interface User {
   name: string;
   email: string;
   emailVerified: boolean;
-  image: string;
+  image: string | null | undefined;
   createdAt: string;   
   updatedAt: string;   
   role: string;
   status: string;
 }
+
